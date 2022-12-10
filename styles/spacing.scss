@@ -10,6 +10,11 @@ $spacing: (
   8: 32rem,
 );
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @each $name, $value in $spacing {
   .m-#{$name} {
     margin: $value;
@@ -40,5 +45,8 @@ $spacing: (
   .px-#{$name} {
     padding-left: $value;
     padding-right: $value;
+  }
+  .gap-#{$name} {
+    gap: $value;
   }
 }

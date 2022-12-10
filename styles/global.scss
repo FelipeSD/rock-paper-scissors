@@ -26,8 +26,10 @@
   }
 }
 
-body {
+html {
   background: var(--background);
+  // background-repeat: no-repeat;
+  background-size: 100%;
   color: var(--white);
   min-height: 100vh;
 }

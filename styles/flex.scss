@@ -2,18 +2,22 @@
   display: flex;
 }
 
-.justify-content-center {
+.justify-center {
   justify-content: center;
 }
 
-.justify-content-end {
+.justify-end {
   justify-content: end;
 }
 
-.align-items-center {
+.align-center {
   align-items: center;
 }
 
 .flex-column {
   flex-direction: column;
+}
+
+.align-stretch {
+  align-items: stretch;
 }
