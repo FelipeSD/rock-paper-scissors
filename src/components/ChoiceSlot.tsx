@@ -27,7 +27,7 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
-  `;
+`;
 
 const Title = styled.h1`
   font-size: 1.3rem;
