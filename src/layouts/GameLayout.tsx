@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useState } from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ModalRules from "../components/ModalRules";
 import { useGame } from "../hooks/useGame";
@@ -42,8 +41,6 @@ export default function GameLayout({ children }: GameLayoutProps) {
           <Button onClick={openRules}>Rules</Button>
         </div>
       </Main>
-
-      <Footer />
     </Container>
   );
 }
@@ -57,5 +54,5 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-  max-height: 500px;
+  min-height: 500px;
 `;

@@ -2,17 +2,14 @@ import styled from "styled-components";
 
 type GamePieceProps = {
   name: string;
-  size: string;
 } & React.HTMLAttributes<HTMLDivElement>;
-export default function GamePiece({ name, size, ...rest }: GamePieceProps) {
-  return <GameBoardItem name={name} size={size} {...rest} />;
+export default function GamePiece({ name, ...rest }: GamePieceProps) {
+  return <GameBoardItem name={name} {...rest} />;
 }
 
 const GameBoardItem = styled.div<GamePieceProps>`
   border-color: unset;
   border-radius: 50%;
-  padding: ${(props) => props.size};
-  font-size: ${(props) => props.size};
   background: ${(props) => `var(--${props.name}-gradient)`};
   box-shadow: 0px 10px 1px 0px ${(props) => `var(--${props.name}-dark)`};
   transition: all 0.2s ease-in-out;

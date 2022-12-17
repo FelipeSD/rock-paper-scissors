@@ -1,22 +1,24 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { GamePieceEnum } from "../../domain/Game";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import styled from "styled-components";
 import Button from "../components/Button";
 import ChoiceSlot from "../components/ChoiceSlot";
-import { useGame } from "../hooks/useGame";
 import GameLayout from "../layouts/GameLayout";
+import { useGame } from "../hooks/useGame";
 
-export default function FightRing() {
+export default function Playground() {
   const { setUserChoice, userChoice, computerChoice, play } = useGame();
   const [opponentChoice, setOpponentChoice] = useState<GamePieceEnum | null>();
   const [result, setResult] = useState<number | null>(null);
+  const router = useRouter();
 
   const waitForOpponent = async () => {
-    if (!userChoice) return;
+    if (!userChoice) return router.push("/");
     const comp = await computerChoice();
-    setOpponentChoice(comp);
     const res = play(userChoice, comp);
+    setOpponentChoice(comp);
     setResult(res);
   };
 
@@ -28,11 +30,11 @@ export default function FightRing() {
 
   useEffect(() => {
     waitForOpponent();
-  }, []);
+  }, [userChoice]);
 
   return (
     <GameLayout>
-      <div className="d-flex justify-center gap-5 mt-5">
+      <Container className="gap-5 mt-5">
         <ChoiceSlot
           text="You picked"
           piece={userChoice}
@@ -43,8 +45,9 @@ export default function FightRing() {
             <h1>{getResultText()}</h1>
             <Link href="/" scroll={false}>
               <StyledButton
-                className={`solid block loose`}
+                className="solid block"
                 onClick={() => setUserChoice(null)}
+                lose={result === 2}
               >
                 Play again
               </StyledButton>
@@ -56,22 +59,30 @@ export default function FightRing() {
           piece={opponentChoice}
           winner={result === 2}
         />
-      </div>
+      </Container>
     </GameLayout>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 const Result = styled.div`
   font-size: 1.5rem;
   margin: auto 0;
   text-transform: uppercase;
   text-align: center;
+
+  @media (max-width: 768px) {
+    order: 3;
+  }
 `;
 
-const StyledButton = styled(Button)`
-  transition: all 0.5s ease-in-out;
-
-  &.loose:hover {
-    color: #be1616;
+const StyledButton = styled(Button)<{ lose?: boolean }>`
+  &:hover {
+    color: ${(props) => (props.lose ? "#be1616" : "#000")};
   }
 `;
