@@ -44,16 +44,25 @@ export default function GameProvider({ children }: GameProviderProps) {
     let title, logo;
 
     if (gameBoard === GameBoardEnum.Original) {
-      title = "Rock, Paper, Scissors, Lizard, Spock";
+      title = "Rock, Paper, Scissors";
       logo = "logo";
     } else {
-      title = "Rock, Paper, Scissors";
+      title = "Rock, Paper, Scissors, Lizard, Spock";
       logo = "logo-bonus";
     }
 
     setGameLogo(logo);
     setGameName(title);
   }, [gameBoard]);
+
+  useEffect(() => {
+    localStorage.setItem("score", JSON.stringify(score));
+  }, [score]);
+
+  useEffect(() => {
+    const score = localStorage.getItem("score");
+    if (score) setScore(JSON.parse(score));
+  }, []);
 
   const changeGameBoard = (newBoard: GameBoardEnum) => {
     setGameBoard(newBoard);
@@ -71,7 +80,7 @@ export default function GameProvider({ children }: GameProviderProps) {
 
   const computerChoice = async (): Promise<GamePieceEnum> => {
     const choices = pieces.map((piece) => piece.name);
-    const randomNumber = Math.floor(Math.random() * 3);
+    const randomNumber = Math.floor(Math.random() * choices.length);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     return choices[randomNumber];
   };

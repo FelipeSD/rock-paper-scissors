@@ -16,28 +16,30 @@ export default function Header() {
 }
 
 const Container = styled.div`
-  min-width: 700px;
   display: flex;
-  justify-content: space-between;
   margin: 0 auto;
+  justify-content: space-between;
   border: 3px solid var(--header-outline);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
+  width: 100%;
+  max-width: 700px;
 `;
 
-type GameLogoProps = {
-  name: string;
-};
-const Logo = styled.div<GameLogoProps>`
+const Logo = styled.div<{ name: string }>`
   background-image: ${(props) => `url("/images/${props.name}.svg")`};
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   width: 162px;
-  height: 99px;
+  height: ${(props) => (props.name === "logo" ? "99px" : "162px")};
 `;
 
 const ScoreBoard = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background: var(--white);
   border-radius: 0.5rem;
   padding: 0.8rem 2.5rem;

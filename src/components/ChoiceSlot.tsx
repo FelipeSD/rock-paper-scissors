@@ -10,9 +10,12 @@ type ChoiceSlot = {
 export default function ChoiceSlot({ text, piece, winner }: ChoiceSlot) {
   return (
     <Container className="gap-4">
-      <h1>{text}</h1>
+      <Title>{text}</Title>
       {piece ? (
-        <GamePiece className={`disabled ${winner && 'highlight'}`} size="8rem" name={piece} />
+        <StyledGamePiece
+          className={`disabled ${winner && "highlight"}`}
+          name={piece}
+        />
       ) : (
         <EmptySlot />
       )}
@@ -24,12 +27,19 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--white);
+`;
+
+const Title = styled.h1`
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   line-height: 1.5;
+  color: var(--white);
+
+  @media (max-width: 768px) {
+    order: 1;
+  }
 `;
 
 const EmptySlot = styled.div`
@@ -37,4 +47,18 @@ const EmptySlot = styled.div`
   border-radius: 50%;
   padding: 6rem;
   background: var(--dark-background);
+
+  @media (max-width: 768px) {
+    padding: 3rem;
+  }
+`;
+
+const StyledGamePiece = styled(GamePiece)`
+  padding: 8rem;
+  font-size: 8rem;
+
+  @media (max-width: 768px) {
+    padding: 4rem;
+    font-size: 4rem;
+  }
 `;

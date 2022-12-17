@@ -18,11 +18,11 @@ export default function Home() {
         {pieces?.map((piece) => (
           <Placer key={piece.name} top={piece.top} left={piece.left}>
             <Link
-              href="/play"
+              href="/playground"
               scroll={false}
               onClick={() => onSelect(piece.name)}
             >
-              <GamePiece name={piece.name} size="5.5rem" />
+              <StyledGamePiece name={piece.name} />
             </Link>
           </Placer>
         ))}
@@ -37,6 +37,11 @@ const GameContainer = styled.div`
   margin: 6rem auto 0;
   height: 350px;
   width: 350px;
+
+  @media (max-width: 768px) {
+    height: 300px;
+    width: 300px;
+  }
 `;
 
 const Board = styled.div<{ board: GameBoardEnum }>`
@@ -52,4 +57,14 @@ const Placer = styled.div<{ top: string; left: string }>`
   top: ${(props) => props.top};
   left: ${(props) => props.left};
   transform: translate(-50%, -50%);
+`;
+
+const StyledGamePiece = styled(GamePiece)`
+  padding: 5.5rem;
+  font-size: 5.5rem;
+
+  @media (max-width: 768px) {
+    padding: 4rem;
+    font-size: 4rem;
+  }
 `;
