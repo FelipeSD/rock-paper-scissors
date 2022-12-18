@@ -34,7 +34,7 @@ export default function Home() {
 
 const GameContainer = styled.div`
   position: relative;
-  margin: 6rem auto 0;
+  margin: 4rem auto 0;
   height: 350px;
   width: 350px;
 

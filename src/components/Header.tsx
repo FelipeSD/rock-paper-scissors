@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useGame } from "../hooks/useGame";
+import Settings from "./Settings";
 
 export default function Header() {
   const { score, gameName, gameLogo } = useGame();
@@ -7,6 +8,7 @@ export default function Header() {
   return (
     <Container>
       <Logo name={gameLogo} role="img" aria-label={gameName} />
+      <Settings />
       <ScoreBoard>
         <ScoreBoardTitle>Score</ScoreBoardTitle>
         <ScoreBoardScore>{score}</ScoreBoardScore>
@@ -18,7 +20,7 @@ export default function Header() {
 const Container = styled.div`
   display: flex;
   margin: 0 auto;
-  justify-content: space-between;
+  margin-bottom: 4rem;
   border: 3px solid var(--header-outline);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
@@ -43,6 +45,7 @@ const ScoreBoard = styled.div`
   background: var(--white);
   border-radius: 0.5rem;
   padding: 0.8rem 2.5rem;
+  margin-left: auto;
 `;
 
 const ScoreBoardTitle = styled.div`

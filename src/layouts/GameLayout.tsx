@@ -37,7 +37,7 @@ export default function GameLayout({ children }: GameLayoutProps) {
       <Main>
         {children}
 
-        <div className="d-flex justify-end mt-4">
+        <div className="d-flex justify-end mt-5">
           <Button onClick={openRules}>Rules</Button>
         </div>
       </Main>
