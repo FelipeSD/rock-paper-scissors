@@ -6,6 +6,11 @@ describe("Game", () => {
   it("should be able to mount original board", () => {
     const pieces = game.mountBoard(GameBoardEnum.Original);
     expect(pieces.length).toBe(3);
+    pieces.map(piece => {
+      expect(piece.name).toBeDefined();
+      expect(piece.top).toBeDefined();
+      expect(piece.left).toBeDefined();
+    });
   });
   it("should be able to mount bonus board", () => {
     const pieces = game.mountBoard(GameBoardEnum.Bonus);

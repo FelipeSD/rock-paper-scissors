@@ -15,7 +15,7 @@ export default function Playground() {
   const router = useRouter();
 
   const waitForOpponent = async () => {
-    if (!userChoice) return router.push("/");
+    if (!userChoice) return router.back();
     const comp = await computerChoice();
     const res = play(userChoice, comp);
     setOpponentChoice(comp);
@@ -39,11 +39,12 @@ export default function Playground() {
           text="You picked"
           piece={userChoice}
           winner={result === 1}
+          data-testid="user-choice"
         />
         {result != null && (
           <Result>
             <h1>{getResultText()}</h1>
-            <Link href="/" scroll={false}>
+            <Link href="/" scroll={false} data-testid="play-again">
               <StyledButton
                 className="solid block"
                 onClick={() => setUserChoice(null)}
@@ -58,6 +59,7 @@ export default function Playground() {
           text="The house picked"
           piece={opponentChoice}
           winner={result === 2}
+          data-testid="opponent-choice"
         />
       </Container>
     </GameLayout>

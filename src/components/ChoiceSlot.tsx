@@ -7,9 +7,14 @@ type ChoiceSlot = {
   winner?: boolean;
   piece?: GamePieceEnum | null;
 };
-export default function ChoiceSlot({ text, piece, winner }: ChoiceSlot) {
+export default function ChoiceSlot({
+  text,
+  piece,
+  winner,
+  ...rest
+}: ChoiceSlot) {
   return (
-    <Container className="gap-4">
+    <Container className="gap-4" {...rest}>
       <Title>{text}</Title>
       {piece ? (
         <StyledGamePiece
@@ -17,7 +22,7 @@ export default function ChoiceSlot({ text, piece, winner }: ChoiceSlot) {
           name={piece}
         />
       ) : (
-        <EmptySlot />
+        <EmptySlot data-testid="empty-slot" />
       )}
     </Container>
   );

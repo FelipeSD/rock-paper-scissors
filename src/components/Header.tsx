@@ -11,7 +11,7 @@ export default function Header() {
       <Settings />
       <ScoreBoard>
         <ScoreBoardTitle>Score</ScoreBoardTitle>
-        <ScoreBoardScore>{score}</ScoreBoardScore>
+        <ScoreBoardScore data-testid="game-score">{score}</ScoreBoardScore>
       </ScoreBoard>
     </Container>
   );

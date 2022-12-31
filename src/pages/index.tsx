@@ -22,7 +22,7 @@ export default function Home() {
               scroll={false}
               onClick={() => onSelect(piece.name)}
             >
-              <StyledGamePiece name={piece.name} />
+              <StyledGamePiece data-testid="game-piece" name={piece.name} />
             </Link>
           </Placer>
         ))}
